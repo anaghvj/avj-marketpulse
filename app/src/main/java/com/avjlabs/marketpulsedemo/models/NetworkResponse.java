@@ -4,8 +4,8 @@ import org.json.JSONObject;
 
 public class NetworkResponse {
 
-    int statuscode = -1;
-    JSONObject jsonObjectResponse;
+    private int statuscode = -1;
+    private JSONObject jsonObjectResponse;
 
     public NetworkResponse() {
     }

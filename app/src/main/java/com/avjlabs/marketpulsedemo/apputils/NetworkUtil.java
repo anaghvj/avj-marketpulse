@@ -18,6 +18,9 @@ public class NetworkUtil {
 
     public static final String TAG = "Network-Util";
 
+    /*
+     * @todo: only support GET request now will add other support later
+     *   */
     @Nullable
     public static HashMap<String, NetworkResponse> makeRequest(
             OkHttpClient okHttpClient,
