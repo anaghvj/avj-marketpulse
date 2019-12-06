@@ -1,14 +1,21 @@
 package com.avjlabs.marketpulsedemo.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class AnalyticalData {
 
+    @SerializedName("id")
     private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("tag")
     private String tag;
+    @SerializedName("color")
     private String color;
-    private ArrayList<CriteriaData> criteriaData;
+    @SerializedName("criteria")
+    private ArrayList<Criteria> criteriaData;
 
     public int getId() {
         return id;
@@ -42,11 +49,11 @@ public class AnalyticalData {
         this.color = color;
     }
 
-    public ArrayList<CriteriaData> getCriteriaData() {
+    public ArrayList<Criteria> getCriteriaData() {
         return criteriaData;
     }
 
-    public void setCriteriaData(ArrayList<CriteriaData> criteriaData) {
+    public void setCriteriaData(ArrayList<Criteria> criteriaData) {
         this.criteriaData = criteriaData;
     }
 }

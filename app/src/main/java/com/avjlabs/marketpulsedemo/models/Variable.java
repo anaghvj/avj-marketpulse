@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Variable {
 
     private String type;
-    private ArrayList<Integer> values;
+    private ArrayList<Double> values;
     private String study_type;
     private String parameter_name;
-    private int min_value;
-    private int max_value;
-    private int default_value;
+    private double min_value;
+    private double max_value;
+    private double default_value;
 
     public String getType() {
         return type;
@@ -20,11 +20,11 @@ public class Variable {
         this.type = type;
     }
 
-    public ArrayList<Integer> getValues() {
+    public ArrayList<Double> getValues() {
         return values;
     }
 
-    public void setValues(ArrayList<Integer> values) {
+    public void setValues(ArrayList<Double> values) {
         this.values = values;
     }
 
@@ -44,27 +44,27 @@ public class Variable {
         this.parameter_name = parameter_name;
     }
 
-    public int getMin_value() {
+    public double getMin_value() {
         return min_value;
     }
 
-    public void setMin_value(int min_value) {
+    public void setMin_value(double min_value) {
         this.min_value = min_value;
     }
 
-    public int getMax_value() {
+    public double getMax_value() {
         return max_value;
     }
 
-    public void setMax_value(int max_value) {
+    public void setMax_value(double max_value) {
         this.max_value = max_value;
     }
 
-    public int getDefault_value() {
+    public double getDefault_value() {
         return default_value;
     }
 
-    public void setDefault_value(int default_value) {
+    public void setDefault_value(double default_value) {
         this.default_value = default_value;
     }
 }

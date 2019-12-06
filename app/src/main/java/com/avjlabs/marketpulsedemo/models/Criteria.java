@@ -1,12 +1,17 @@
 package com.avjlabs.marketpulsedemo.models;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.HashMap;
 
 public class Criteria {
 
+    @SerializedName("type")
     private String type;
+    @SerializedName("text")
     private String text;
-    private JSONObject variable;
+    @SerializedName("variable")
+    private HashMap<String, Variable> variable;
 
     public String getType() {
         return type;
@@ -24,11 +29,11 @@ public class Criteria {
         this.text = text;
     }
 
-    public JSONObject getVariable() {
+    public HashMap<String, Variable> getVariable() {
         return variable;
     }
 
-    public void setVariable(JSONObject variable) {
+    public void setVariable(HashMap<String, Variable> variable) {
         this.variable = variable;
     }
 }
