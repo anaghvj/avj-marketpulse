@@ -2,12 +2,14 @@ package com.avjlabs.marketpulsedemo;
 
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avjlabs.marketpulsedemo.models.Criteria;
 import com.avjlabs.marketpulsedemo.models.Variable;
@@ -34,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
         ArrayList<Criteria> criteriaArrayList = gson.fromJson(getIntent().getStringExtra("data"),
                 dataType);
 
-        SpannableStringBuilder spanText = new SpannableStringBuilder();
+        final SpannableStringBuilder spanText = new SpannableStringBuilder();
 
         for (int i = 0; i < criteriaArrayList.size(); i++) {
             if (criteriaArrayList.get(i).getType().equals("plain_text")) {
@@ -61,7 +63,13 @@ public class DetailsActivity extends AppCompatActivity {
                                              public void onClick(@NonNull View view) {
                                                  //to click
 
+
+                                                 Toast.makeText(DetailsActivity.this, "variable",
+                                                         Toast.LENGTH_SHORT).show();
+
+
                                              }
+
 
                                              @Override
                                              public void updateDrawState(@NonNull TextPaint textPaint) {
@@ -72,7 +80,7 @@ public class DetailsActivity extends AppCompatActivity {
                                          },
                                 spanText.length() - String.valueOf(
                                         entry.getValue().getValues().get(0)).length(),
-                                spanText.length(), 0);
+                                spanText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         varCount++;
                         if (strAray.length > 1) {
                             str = strAray[1];
@@ -90,6 +98,9 @@ public class DetailsActivity extends AppCompatActivity {
                                              @Override
                                              public void onClick(@NonNull View view) {
                                                  //to click
+
+                                                 Toast.makeText(DetailsActivity.this, "Indicator",
+                                                         Toast.LENGTH_SHORT).show();
                                              }
 
                                              @Override
@@ -101,7 +112,7 @@ public class DetailsActivity extends AppCompatActivity {
                                          },
                                 spanText.length() - String.valueOf(
                                         entry.getValue().getDefault_value()).length(),
-                                spanText.length(), 0);
+                                spanText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                         varCount++;
                         if (strAray.length > 1) {
