@@ -1,7 +1,9 @@
 package com.avjlabs.marketpulsedemo;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
 
 import com.avjlabs.marketpulsedemo.Adapters.MainRecyclerAdapter;
 import com.avjlabs.marketpulsedemo.models.AnalyticalData;
@@ -26,6 +28,10 @@ public class MainViewModel extends ViewModel {
 
         analyticalDataArrayList = MainRepository.getInstance().getDataFromApi();
         mainRecyclerAdapter = new MainRecyclerAdapter(analyticalDataArrayList, this);
+    }
+
+    public void getDataFromApi() {
+        analyticalDataArrayList = MainRepository.getInstance().getDataFromApi();
     }
 
     public MainRecyclerAdapter getAdapter() {
@@ -63,7 +69,10 @@ public class MainViewModel extends ViewModel {
         }
     }
 
-    public void onItemClick(int index) {
+    public void onItemClick(int index, View view) {
         Log.d("ClickItem", "clicked " + index);
+        Intent intent = new Intent(view.getContext(), DetailsActivity.class);
+        intent.putExtra("data", analyticalDataArrayList.getValue().get(index).getCriteriaData());
+        view.getContext().startActivity(intent);
     }
 }

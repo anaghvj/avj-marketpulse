@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class CriteriaData {
 
     @SerializedName("criteria")

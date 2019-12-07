@@ -1,8 +1,11 @@
 package com.avjlabs.marketpulsedemo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Variable {
+public class Variable implements Parcelable {
 
     private String type;
     private ArrayList<Double> values;
@@ -11,6 +14,27 @@ public class Variable {
     private double min_value;
     private double max_value;
     private double default_value;
+
+    public static final Creator<Variable> CREATOR = new Creator<Variable>() {
+        @Override
+        public Variable createFromParcel(Parcel in) {
+            return new Variable(in);
+        }
+
+        @Override
+        public Variable[] newArray(int size) {
+            return new Variable[size];
+        }
+    };
+
+    protected Variable(Parcel in) {
+        type = in.readString();
+        study_type = in.readString();
+        parameter_name = in.readString();
+        min_value = in.readDouble();
+        max_value = in.readDouble();
+        default_value = in.readDouble();
+    }
 
     public String getType() {
         return type;
@@ -67,4 +91,22 @@ public class Variable {
     public void setDefault_value(double default_value) {
         this.default_value = default_value;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(type);
+        parcel.writeList(values);
+        parcel.writeString(study_type);
+        parcel.writeString(parameter_name);
+        parcel.writeDouble(min_value);
+        parcel.writeDouble(max_value);
+        parcel.writeDouble(default_value);
+
+    }
+
 }

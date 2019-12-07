@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,18 +22,28 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView mainRecyclerView;
     LinearLayout noDataView;
     LinearLayout loadingView;
+    SwipeRefreshLayout swipeRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //  Debug.waitForDebugger();
         setContentView(R.layout.activity_main);
+        swipeRefresh = findViewById(R.id.swipeRefresh);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainRecyclerView = findViewById(R.id.recyclerViewMain);
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mainRecyclerView.setAdapter(mainViewModel.getAdapter());
+        mainRecyclerView.addItemDecoration(new DividerItemDecoration(mainRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL));
         noDataView = findViewById(R.id.noDataView);
         loadingView = findViewById(R.id.loadingView);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mainViewModel.getDataFromApi();
+            }
+        });
         mainViewModel.getAnalyticalDataArrayList().observe(this,
                 new Observer<ArrayList<AnalyticalData>>() {
                     @Override
@@ -45,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 if (aBoolean) {
                     loadingView.setVisibility(View.VISIBLE);
                     mainRecyclerView.setVisibility(View.GONE);
+                    swipeRefresh.setRefreshing(true);
                 } else {
                     loadingView.setVisibility(View.GONE);
                     mainRecyclerView.setVisibility(View.VISIBLE);
+                    swipeRefresh.setRefreshing(false);
                 }
             }
         });

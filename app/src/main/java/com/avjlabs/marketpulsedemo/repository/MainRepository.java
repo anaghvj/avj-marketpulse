@@ -1,6 +1,7 @@
 package com.avjlabs.marketpulsedemo.repository;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.avjlabs.marketpulsedemo.apputils.AppUtiils;
 import com.avjlabs.marketpulsedemo.apputils.NetworkUtil;
@@ -42,6 +43,7 @@ public class MainRepository {
     }
 
     public LiveData<ArrayList<AnalyticalData>> getDataFromApi() {
+        Log.i("api", "fetching data...");
         new AsyncTask<Void, Void, ArrayList<AnalyticalData>>() {
             @Override
             protected ArrayList<AnalyticalData> doInBackground(Void... voids) {
