@@ -12,11 +12,21 @@ import okhttp3.OkHttpClient;
 public class ApplicationSingleton extends Application {
 
     private OkHttpClient okHttpClient;
-
+    private ApplicationSingleton applicationSingleton;
     @Override
     public void onCreate() {
         super.onCreate();
-        setOkHttpClient(initOkhttpClient());
+        setApplicationSingleton(this);
+        // setOkHttpClient(initOkhttpClient());
+
+    }
+
+    public ApplicationSingleton getApplicationSingleton() {
+        return applicationSingleton;
+    }
+
+    public void setApplicationSingleton(ApplicationSingleton applicationSingleton) {
+        this.applicationSingleton = applicationSingleton;
     }
 
     public OkHttpClient getOkHttpClient() {

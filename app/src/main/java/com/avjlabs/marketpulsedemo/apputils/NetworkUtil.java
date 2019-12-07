@@ -3,8 +3,8 @@ package com.avjlabs.marketpulsedemo.apputils;
 import com.avjlabs.marketpulsedemo.models.NetworkResponse;
 
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -58,12 +58,12 @@ public class NetworkUtil {
 
             HashMap<String, NetworkResponse> respMap = new HashMap<>();
             NetworkResponse responseData = new NetworkResponse();
-            JSONObject responseJsonObject = null;
+            JSONArray responseJsonObject = null;
             String responseBody = response.body().string();
             try {
-                responseJsonObject = new JSONObject(responseBody);
+                responseJsonObject = new JSONArray(responseBody);
             } catch (JSONException e) {
-                responseJsonObject = new JSONObject();
+                responseJsonObject = new JSONArray();
             }
             responseData = new NetworkResponse(response.code(), responseJsonObject);
             response.body().close();

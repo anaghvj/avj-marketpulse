@@ -1,29 +1,29 @@
 package com.avjlabs.marketpulsedemo.models;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 public class NetworkResponse {
 
     private int statuscode = -1;
-    private JSONObject jsonObjectResponse;
+    private JSONArray jsonObjectResponse;
 
     public NetworkResponse() {
     }
 
     public NetworkResponse(
             int statuscode,
-            JSONObject jsonObjectResponse
+            JSONArray jsonObjectResponse
     ) {
         this.statuscode = statuscode;
         this.jsonObjectResponse = jsonObjectResponse;
 
     }
 
-    public JSONObject getJsonObjectResponse() {
+    public JSONArray getJsonObjectResponse() {
         return jsonObjectResponse;
     }
 
-    public void setJsonObjectResponse(JSONObject jsonObjectResponse) {
+    public void setJsonObjectResponse(JSONArray jsonObjectResponse) {
         this.jsonObjectResponse = jsonObjectResponse;
     }
 
