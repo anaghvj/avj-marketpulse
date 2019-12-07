@@ -3,14 +3,16 @@ package com.avjlabs.marketpulsedemo.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 
 public class Variable implements Parcelable {
 
-    private String type;
+    @Nullable private String type;
     private ArrayList<Double> values;
-    private String study_type;
-    private String parameter_name;
+    @Nullable private String study_type;
+    @Nullable private String parameter_name;
     private double min_value;
     private double max_value;
     private double default_value;
@@ -29,6 +31,8 @@ public class Variable implements Parcelable {
 
     protected Variable(Parcel in) {
         type = in.readString();
+        values = new ArrayList<Double>();
+        in.readList(values, Double.class.getClassLoader());
         study_type = in.readString();
         parameter_name = in.readString();
         min_value = in.readDouble();

@@ -1,10 +1,13 @@
 package com.avjlabs.marketpulsedemo.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class AnalyticalData {
+public class AnalyticalData implements Parcelable {
 
     @SerializedName("id")
     private int id;
@@ -14,8 +17,27 @@ public class AnalyticalData {
     private String tag;
     @SerializedName("color")
     private String color;
+    public static final Creator<AnalyticalData> CREATOR = new Creator<AnalyticalData>() {
+        @Override
+        public AnalyticalData createFromParcel(Parcel in) {
+            return new AnalyticalData(in);
+        }
+
+        @Override
+        public AnalyticalData[] newArray(int size) {
+            return new AnalyticalData[size];
+        }
+    };
     @SerializedName("criteria")
-    private ArrayList<Criteria> criteriaData;
+    private ArrayList<Criteria> criteria;
+
+    protected AnalyticalData(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        tag = in.readString();
+        color = in.readString();
+        criteria = in.createTypedArrayList(Criteria.CREATOR);
+    }
 
     public int getId() {
         return id;
@@ -50,10 +72,24 @@ public class AnalyticalData {
     }
 
     public ArrayList<Criteria> getCriteriaData() {
-        return criteriaData;
+        return criteria;
     }
 
     public void setCriteriaData(ArrayList<Criteria> criteriaData) {
-        this.criteriaData = criteriaData;
+        this.criteria = criteriaData;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(tag);
+        parcel.writeString(color);
+        parcel.writeTypedList(criteria);
     }
 }

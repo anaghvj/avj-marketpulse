@@ -5,17 +5,11 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.HashMap;
 
 public class Criteria implements Parcelable {
-
-    @SerializedName("type")
-    private String type;
-    @SerializedName("text")
-    private String text;
-    @SerializedName("variable")
-    private HashMap<String, Variable> variable;
-
 
     public static final Creator<Criteria> CREATOR = new Creator<Criteria>() {
         @Override
@@ -28,11 +22,19 @@ public class Criteria implements Parcelable {
             return new Criteria[size];
         }
     };
+    @Nullable @SerializedName("type")
+    private String type;
+    @Nullable @SerializedName("text")
+    private String text;
+    @Nullable @SerializedName("variable")
+    private HashMap<String, Variable> variable;
 
     protected Criteria(Parcel in) {
-        type = in.readString();
-        text = in.readString();
+        this.type = in.readString();
+        this.text = in.readString();
+        this.variable = (HashMap<String, Variable>) in.readSerializable();
     }
+
 
     public String getType() {
         return type;
@@ -67,7 +69,7 @@ public class Criteria implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.type);
         parcel.writeString(this.text);
-        parcel.writeMap(this.variable);
+        parcel.writeSerializable(this.variable);
 
     }
 

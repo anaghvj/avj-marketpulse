@@ -7,8 +7,12 @@ import android.view.View;
 
 import com.avjlabs.marketpulsedemo.Adapters.MainRecyclerAdapter;
 import com.avjlabs.marketpulsedemo.models.AnalyticalData;
+import com.avjlabs.marketpulsedemo.models.Criteria;
 import com.avjlabs.marketpulsedemo.repository.MainRepository;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import androidx.lifecycle.LiveData;
@@ -72,7 +76,13 @@ public class MainViewModel extends ViewModel {
     public void onItemClick(int index, View view) {
         Log.d("ClickItem", "clicked " + index);
         Intent intent = new Intent(view.getContext(), DetailsActivity.class);
-        intent.putExtra("data", analyticalDataArrayList.getValue().get(index).getCriteriaData());
+        Gson gson = new Gson();
+        Type dataType = new TypeToken<ArrayList<Criteria>>() { }.getType();
+        String jsonData = gson.toJson(
+                analyticalDataArrayList.getValue().get(index).getCriteriaData(),
+                dataType);
+        Log.i("json", jsonData);
+        intent.putExtra("data", jsonData);
         view.getContext().startActivity(intent);
     }
 }
