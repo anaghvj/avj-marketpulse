@@ -1,31 +1,22 @@
 package com.avjlabs.marketpulsedemo;
 
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.avjlabs.marketpulsedemo.Adapters.CriteriaAdapter;
 import com.avjlabs.marketpulsedemo.models.Criteria;
-import com.avjlabs.marketpulsedemo.models.Variable;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DetailsActivity extends AppCompatActivity {
+
+    RecyclerView criteriaRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +27,7 @@ public class DetailsActivity extends AppCompatActivity {
         ArrayList<Criteria> criteriaArrayList = gson.fromJson(getIntent().getStringExtra("data"),
                 dataType);
 
-        final SpannableStringBuilder spanText = new SpannableStringBuilder();
+       /* final SpannableStringBuilder spanText = new SpannableStringBuilder();
 
         for (int i = 0; i < criteriaArrayList.size(); i++) {
             if (criteriaArrayList.get(i).getType().equals("plain_text")) {
@@ -57,7 +48,8 @@ public class DetailsActivity extends AppCompatActivity {
                     if (entry.getValue().getType().equals("value")) {
 
                         spanText.append(strAray[0]);
-                        spanText.append(String.valueOf(entry.getValue().getValues().get(0)));
+                        spanText.append("("+String.valueOf(entry.getValue().getValues().get(0))+
+                                ")");
                         spanText.setSpan(new ClickableSpan() {
                                              @Override
                                              public void onClick(@NonNull View view) {
@@ -75,11 +67,11 @@ public class DetailsActivity extends AppCompatActivity {
                                              public void updateDrawState(@NonNull TextPaint textPaint) {
                                                  super.updateDrawState(textPaint);
                                                  textPaint.setColor(textPaint.linkColor);
-                                                 textPaint.setUnderlineText(true);
+                                                 textPaint.setUnderlineText(false);
                                              }
                                          },
                                 spanText.length() - String.valueOf(
-                                        entry.getValue().getValues().get(0)).length(),
+                                        entry.getValue().getValues().get(0)).length()-2,
                                 spanText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         varCount++;
                         if (strAray.length > 1) {
@@ -93,11 +85,13 @@ public class DetailsActivity extends AppCompatActivity {
                     } else if (entry.getValue().getType().equals("indicator")) {
 
                         spanText.append(strAray[0]);
-                        spanText.append(String.valueOf(entry.getValue().getDefault_value()));
+                        spanText.append("("+String.valueOf(entry.getValue().getDefault_value())+
+                                ")");
                         spanText.setSpan(new ClickableSpan() {
                                              @Override
                                              public void onClick(@NonNull View view) {
                                                  //to click
+
 
                                                  Toast.makeText(DetailsActivity.this, "Indicator",
                                                          Toast.LENGTH_SHORT).show();
@@ -107,11 +101,11 @@ public class DetailsActivity extends AppCompatActivity {
                                              public void updateDrawState(@NonNull TextPaint textPaint) {
                                                  super.updateDrawState(textPaint);
                                                  textPaint.setColor(textPaint.linkColor);
-                                                 textPaint.setUnderlineText(true);
+                                                 textPaint.setUnderlineText(false);
                                              }
                                          },
                                 spanText.length() - String.valueOf(
-                                        entry.getValue().getDefault_value()).length(),
+                                        entry.getValue().getDefault_value()).length()-2,
                                 spanText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                         varCount++;
@@ -132,7 +126,11 @@ public class DetailsActivity extends AppCompatActivity {
         }
         TextView textViewCriteria = findViewById(R.id.textViewCriteria);
         textViewCriteria.setMovementMethod(LinkMovementMethod.getInstance());
-        textViewCriteria.setText(spanText, TextView.BufferType.SPANNABLE);
+        textViewCriteria.setText(spanText, TextView.BufferType.SPANNABLE);*/
+
+        criteriaRecyclerView = findViewById(R.id.criteriaRecyclerView);
+        criteriaRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        criteriaRecyclerView.setAdapter(new CriteriaAdapter(this, criteriaArrayList));
 
     }
 }
