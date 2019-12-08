@@ -1,4 +1,4 @@
-package com.avjlabs.marketpulsedemo.models;
+package com.avjlabs.marketpulsedemo.ViewHolders;
 
 import android.view.View;
 import android.widget.TextView;

@@ -1,10 +1,12 @@
-package com.avjlabs.marketpulsedemo;
+package com.avjlabs.marketpulsedemo.Activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.avjlabs.marketpulsedemo.R;
 import com.avjlabs.marketpulsedemo.models.AnalyticalData;
+import com.avjlabs.marketpulsedemo.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
 

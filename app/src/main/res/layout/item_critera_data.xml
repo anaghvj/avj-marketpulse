@@ -5,10 +5,14 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
         android:id="@+id/textViewData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#fff"
         android:textSize="18sp" />
 
 

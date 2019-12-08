@@ -1,10 +1,11 @@
-package com.avjlabs.marketpulsedemo;
+package com.avjlabs.marketpulsedemo.viewmodels;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 
+import com.avjlabs.marketpulsedemo.Activity.DetailsActivity;
 import com.avjlabs.marketpulsedemo.Adapters.MainRecyclerAdapter;
 import com.avjlabs.marketpulsedemo.models.AnalyticalData;
 import com.avjlabs.marketpulsedemo.models.Criteria;

@@ -1,8 +1,11 @@
-package com.avjlabs.marketpulsedemo;
+package com.avjlabs.marketpulsedemo.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.avjlabs.marketpulsedemo.Adapters.CriteriaAdapter;
+import com.avjlabs.marketpulsedemo.R;
 import com.avjlabs.marketpulsedemo.models.Criteria;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -127,7 +130,8 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textViewCriteria = findViewById(R.id.textViewCriteria);
         textViewCriteria.setMovementMethod(LinkMovementMethod.getInstance());
         textViewCriteria.setText(spanText, TextView.BufferType.SPANNABLE);*/
-
+        TextView textViewCriteria = findViewById(R.id.textViewCriteria);
+        textViewCriteria.setVisibility(View.GONE);
         criteriaRecyclerView = findViewById(R.id.criteriaRecyclerView);
         criteriaRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         criteriaRecyclerView.setAdapter(new CriteriaAdapter(this, criteriaArrayList));

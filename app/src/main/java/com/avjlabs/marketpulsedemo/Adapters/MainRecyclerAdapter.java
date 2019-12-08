@@ -3,10 +3,10 @@ package com.avjlabs.marketpulsedemo.Adapters;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.avjlabs.marketpulsedemo.MainViewModel;
 import com.avjlabs.marketpulsedemo.R;
+import com.avjlabs.marketpulsedemo.ViewHolders.MainViewHolder;
 import com.avjlabs.marketpulsedemo.models.AnalyticalData;
-import com.avjlabs.marketpulsedemo.models.MainViewHolder;
+import com.avjlabs.marketpulsedemo.viewmodels.MainViewModel;
 
 import java.util.ArrayList;
 

@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.avjlabs.marketpulsedemo.MainViewModel" />
+            type="com.avjlabs.marketpulsedemo.viewmodels.MainViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
